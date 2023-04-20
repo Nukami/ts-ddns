@@ -1,0 +1,41 @@
+{
+  "name": "ts-ddns",
+  "version": "1.0.0",
+  "description": "DDNS based on cloudflare.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf build",
+    "build": "tsc -p tsconfig.json",
+    "start": "node --enable-source-maps build",
+    "go": "yarn clean && yarn build && yarn start",
+    "test": "jest",
+    "ncc": "rimraf dist && ncc build src/index.ts -o dist && cp -n example.config.yml dist/config.yml",
+    "pkg": "rimraf bin && pkg -t node18-linux-arm64,node18-linux-x64 dist/index.js -o bin/ts-ddns && cp example.config.yml bin/config.yml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nukami/ts-ddns.git"
+  },
+  "keywords": [
+    "ddns"
+  ],
+  "author": "Nukami",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nukami/ts-ddns/issues"
+  },
+  "homepage": "https://github.com/Nukami/ts-ddns#readme",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "typescript": "^4.9.4",
+    "yaml": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.5",
+    "@vercel/ncc": "^0.36.1",
+    "jest": "^29.3.1",
+    "pkg": "^5.8.1",
+    "rimraf": "^5.0.0",
+    "ts-jest": "^29.0.5"
+  }
+}

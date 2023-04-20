@@ -1,0 +1,20 @@
+# Create from https://dash.cloudflare.com/profile/api-tokens
+token: long-long-long-long-long-long-long-token
+# Domains and names of their A records you want to update
+records:
+  example-a.com:
+    # example-a.com
+    - "@"
+    # ddns.example-a.com
+    - ddns
+  example-b.com:
+    # a.example-b.com
+    - a
+    # c.example-b.com
+    - c
+# Interval (in seconds) between two ip checking
+interval: 120
+# DISABLE, ERROR, WARN, INFO, DEBUG
+log_level: INFO
+# Path to the dir of logs files
+logs: /var/log/ts-ddns
