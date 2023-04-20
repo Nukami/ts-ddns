@@ -6,19 +6,19 @@ It helps you to detect the changes of public IP address and update new IP to the
 
 # Usage
 
-To use ts-ddns, following the steps below:
+To use ts-ddns, following the steps below (based on ubuntu 22.04):
 
 ## 1. Prepare DDNS domain
 
 1. Go to [Cloudflare dashboard](https://dash.cloudflare.com/)
 2. Click `Add a site` to add an existing domain to cloudflare zones, or skip this step if you already have a zone added
-   - You can purchase a new domain from cloudflare or some other domain name registrar such as [namecheap](https://www.namecheap.com/) and [GoDaddy](https://www.godaddy.com/)
+   - You can purchase a new domain on cloudflare or some other domain name registrar such as [namecheap](https://www.namecheap.com/) and [GoDaddy](https://www.godaddy.com/) if you don't have any domain
 3. Click an existing zone, for example, `example.com`, to enter the overview of this zone
 4. Click `DNS`-`Records` to enter the DNS Records panel
 5. Click `Add record` to add a record for our DDNS service. Let's use `ddns.example.com` as an example
    1. Select `A` in `Type` list
-   2. In `Name (required)`, enter your subdomain, we use `ddns` here
-   3. In `IPv4 address (required)`, enter any IPv4 address value, it will be updated by ts-ddns
+   2. In `Name (required)`, enter the prefix of your subdomain, we use `ddns` here
+   3. In `IPv4 address (required)`, enter any IPv4 address value, such as `12.34.56.78`, it will be overwrote by ts-ddns
    4. Switch off the `Proxy`
    5. In `TTL`, select `1 min`
    6. Click `Save`
@@ -46,14 +46,14 @@ To use ts-ddns, following the steps below:
 2. Assuming that we have cloned ts-ddns to `/git/ts-ddns`: `cd /git/ts-ddns`
 3. `yarn install && yarn ncc`
 4. Now we will get `/git/ts-ddns/dist/index.js` and `/git/ts-ddns/dist/config.yml`
-5. Edit `config.yml`, for more information, goto [Configuration](#configuration)
-6. Startup ts-ddns: `node /git/ts-ddns/dist/index.js`
+5. Edit `config.yml`, for more information, go to [Configuration](#configuration)
+6. Launch ts-ddns: `node /git/ts-ddns/dist/index.js`
 
 ## 5. Keep ts-ddns alive
 
 ts-ddns can be launched by many ways.
 
-We could simply append `node /git/ts-ddns/dist/index.js &` to `/etc/rc.local`, so that ts-ddns will automatically start on everytime we reboot.
+We could also simply append `node /git/ts-ddns/dist/index.js &` to the end of `/etc/rc.local`, so that ts-ddns will automatically start on everytime we reboot.
 
 But here, I would suggest using [PM2](https://pm2.keymetrics.io/), which can automatically start ts-ddns every time the system runs, and also automatically restart it in case of unexpected crashes
 
@@ -129,16 +129,16 @@ There are 5 levels of log:
 
 ## 5. logs
 
-Path to the directory where logs files should be outputed
+The directory where logs files should be outputed
 
-Although ts-ddns can create directories automatically, if you encounter "permission denied" errors, you may need to create the directory or file manually.
+Although ts-ddns can create directories automatically, if you encounter "permission denied" errors, you may need to create the directory manually.
 
-Leave it empty or delete this field to disable log file output
+Leave it empty or delete this field to disable the output of logs files
 
 # Thanks
 
 1. [Cloudflare](https://www.cloudflare.com/)
-   - We obtained FREE and powerful domain name resolve service from Cloudflare
+   - We obtained FREE and powerful domain name resolving service from Cloudflare
 2. [IP Address Lookup - IP.SB](https://ip.sb/)
    - We detect the changes of our public IP address by requesting ip.sb periodically
 3. [ipify](https://www.ipify.org/)
